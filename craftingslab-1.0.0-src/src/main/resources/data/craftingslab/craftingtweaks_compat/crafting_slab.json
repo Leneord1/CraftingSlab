@@ -1,0 +1,21 @@
+{
+  "modid": "craftingslab",
+  "containerClass": "com.craftingslab.menu.CraftingSlabMenu",
+  "gridSlotNumber": 1,
+  "gridSize": 9,
+  "alignToGrid": "left",
+  "hideButtons": false,
+  "phantomItems": false,
+  "tweakRotate": {
+    "enabled": true,
+    "showButton": true
+  },
+  "tweakBalance": {
+    "enabled": true,
+    "showButton": true
+  },
+  "tweakClear": {
+    "enabled": true,
+    "showButton": true
+  }
+}
