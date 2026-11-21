@@ -2,6 +2,7 @@ package com.craftingslab.registry;
 
 import com.craftingslab.CraftingSlabMod;
 import com.craftingslab.menu.CraftingSlabMenu;
+import com.craftingslab.menu.FurnaceSlabMenu;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
@@ -15,6 +16,9 @@ public final class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<CraftingSlabMenu>> CRAFTING_SLAB =
             MENU_TYPES.register("crafting_slab", () -> IMenuTypeExtension.create(CraftingSlabMenu::new));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<FurnaceSlabMenu>> FURNACE_SLAB =
+            MENU_TYPES.register("furnace_slab", () -> IMenuTypeExtension.create(FurnaceSlabMenu::new));
 
     private ModMenuTypes() {}
 }

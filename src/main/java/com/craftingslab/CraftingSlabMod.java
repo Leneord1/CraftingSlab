@@ -29,6 +29,7 @@ public class CraftingSlabMod {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(ModBlocks.CRAFTING_SLAB_ITEM);
+            event.accept(ModBlocks.FURNACE_SLAB_ITEM);
         }
     }
 }

@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.craftingslab.CraftingSlabMod;
 import com.craftingslab.blockentity.CraftingSlabBlockEntity;
+import com.craftingslab.blockentity.FurnaceSlabBlockEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,6 +19,11 @@ public final class ModBlockEntities {
             BLOCK_ENTITIES.register("crafting_slab", () -> new BlockEntityType<>(
                     CraftingSlabBlockEntity::new,
                     Set.of(ModBlocks.CRAFTING_SLAB.get())));
+
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FurnaceSlabBlockEntity>> FURNACE_SLAB =
+            BLOCK_ENTITIES.register("furnace_slab", () -> new BlockEntityType<>(
+                    FurnaceSlabBlockEntity::new,
+                    Set.of(ModBlocks.FURNACE_SLAB.get())));
 
     private ModBlockEntities() {}
 }

@@ -1,24 +1,30 @@
 package com.craftingslab.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import com.craftingslab.blockentity.CraftingSlabBlockEntity;
 import com.craftingslab.registry.ModBlocks;
 import com.craftingslab.registry.ModMenuTypes;
+import com.jomlom.nearbycrafting.platform.Services;
+import com.jomlom.recipebookaccess.api.RecipeBookInventoryProvider;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.AbstractCraftingMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.inventory.ResultContainer;
-import net.minecraft.world.inventory.ResultSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingInput;
@@ -26,7 +32,13 @@ import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntity;
-public class CraftingSlabMenu extends AbstractContainerMenu {
+import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jspecify.annotations.Nullable;
+
+/**
+ * Persistent crafting-slab menu with Nearby Crafting recipe-book autofill.
+ */
+public class CraftingSlabMenu extends AbstractCraftingMenu implements RecipeBookInventoryProvider {
     public static final int RESULT_SLOT = 0;
     public static final int CRAFT_SLOT_START = 1;
     public static final int CRAFT_SLOT_COUNT = 9;
@@ -36,30 +48,25 @@ public class CraftingSlabMenu extends AbstractContainerMenu {
     public static final int USE_ROW_SLOT_START = 37;
     public static final int USE_ROW_SLOT_END = 46;
 
-    private final CraftingContainer craftSlots;
-    private final ResultContainer resultSlots = new ResultContainer();
     private final ContainerLevelAccess access;
     private final Player player;
     private final CraftingSlabBlockEntity blockEntity;
+    private boolean placingRecipe;
+    private boolean syncingFromBlockEntity;
 
     public CraftingSlabMenu(int containerId, Inventory playerInventory, RegistryFriendlyByteBuf data) {
         this(containerId, playerInventory, getBlockEntity(playerInventory, data.readBlockPos()));
     }
 
     public CraftingSlabMenu(int containerId, Inventory playerInventory, CraftingSlabBlockEntity blockEntity) {
-        super(ModMenuTypes.CRAFTING_SLAB.get(), containerId);
+        super(ModMenuTypes.CRAFTING_SLAB.get(), containerId, 3, 3);
         this.blockEntity = blockEntity;
         this.player = playerInventory.player;
         this.access = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
-        this.craftSlots = new ItemHandlerCraftingContainer(this, blockEntity.getItems(), 3, 3);
-
-        this.addSlot(new ResultSlot(playerInventory.player, this.craftSlots, this.resultSlots, 0, 124, 35));
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                this.addSlot(new Slot(this.craftSlots, col + row * 3, 30 + col * 18, 17 + row * 18));
-            }
-        }
+        this.addResultSlot(this.player, 124, 35);
+        this.addCraftingGridSlots(30, 17);
         this.addStandardInventorySlots(playerInventory, 8, 84);
+        this.loadFromBlockEntity();
         this.slotsChanged(this.craftSlots);
     }
 
@@ -72,23 +79,43 @@ public class CraftingSlabMenu extends AbstractContainerMenu {
         return new CraftingSlabBlockEntity(pos, ModBlocks.CRAFTING_SLAB.get().defaultBlockState());
     }
 
+    private void loadFromBlockEntity() {
+        this.syncingFromBlockEntity = true;
+        ItemStackHandler items = this.blockEntity.getItems();
+        for (int i = 0; i < CRAFT_SLOT_COUNT; i++) {
+            this.craftSlots.setItem(i, items.getStackInSlot(i).copy());
+        }
+        this.syncingFromBlockEntity = false;
+    }
+
+    private void syncToBlockEntity() {
+        if (this.syncingFromBlockEntity) {
+            return;
+        }
+        ItemStackHandler items = this.blockEntity.getItems();
+        for (int i = 0; i < CRAFT_SLOT_COUNT; i++) {
+            items.setStackInSlot(i, this.craftSlots.getItem(i).copy());
+        }
+    }
+
     protected static void slotChangedCraftingGrid(
-            AbstractContainerMenu menu,
+            AbstractCraftingMenu menu,
             ServerLevel level,
             Player player,
             CraftingContainer craftSlots,
-            ResultContainer resultSlots) {
+            ResultContainer resultSlots,
+            @Nullable RecipeHolder<CraftingRecipe> recipe) {
         CraftingInput input = craftSlots.asCraftInput();
         ServerPlayer serverPlayer = (ServerPlayer) player;
         ItemStack result = ItemStack.EMPTY;
         Optional<RecipeHolder<CraftingRecipe>> optional = level.getServer()
                 .getRecipeManager()
-                .getRecipeFor(RecipeType.CRAFTING, input, level);
+                .getRecipeFor(RecipeType.CRAFTING, input, level, recipe);
         if (optional.isPresent()) {
             RecipeHolder<CraftingRecipe> holder = optional.get();
-            CraftingRecipe recipe = holder.value();
+            CraftingRecipe craftingRecipe = holder.value();
             if (resultSlots.setRecipeUsed(serverPlayer, holder)) {
-                ItemStack assembled = recipe.assemble(input, level.registryAccess());
+                ItemStack assembled = craftingRecipe.assemble(input, level.registryAccess());
                 if (assembled.isItemEnabled(level.enabledFeatures())) {
                     result = assembled;
                 }
@@ -100,17 +127,33 @@ public class CraftingSlabMenu extends AbstractContainerMenu {
     }
 
     @Override
-    public void slotsChanged(net.minecraft.world.Container container) {
-        this.access.execute((level, pos) -> {
-            if (level instanceof ServerLevel serverLevel) {
-                slotChangedCraftingGrid(this, serverLevel, this.player, this.craftSlots, this.resultSlots);
-            }
-        });
+    public void slotsChanged(Container container) {
+        this.syncToBlockEntity();
+        if (!this.placingRecipe) {
+            this.access.execute((level, pos) -> {
+                if (level instanceof ServerLevel serverLevel) {
+                    slotChangedCraftingGrid(this, serverLevel, this.player, this.craftSlots, this.resultSlots, null);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void beginPlacingRecipe() {
+        this.placingRecipe = true;
+    }
+
+    @Override
+    public void finishPlacingRecipe(ServerLevel level, RecipeHolder<CraftingRecipe> recipe) {
+        this.placingRecipe = false;
+        this.syncToBlockEntity();
+        slotChangedCraftingGrid(this, level, this.player, this.craftSlots, this.resultSlots, recipe);
     }
 
     @Override
     public void removed(Player player) {
         // Keep matrix items in the block entity; do not clear or eject them.
+        this.syncToBlockEntity();
         super.removed(player);
     }
 
@@ -169,11 +212,60 @@ public class CraftingSlabMenu extends AbstractContainerMenu {
         return slot.container != this.resultSlots && super.canTakeItemForPickAll(stack, slot);
     }
 
-    public CraftingSlabBlockEntity getBlockEntity() {
-        return blockEntity;
+    @Override
+    public Slot getResultSlot() {
+        return this.slots.get(RESULT_SLOT);
     }
 
+    @Override
     public List<Slot> getInputGridSlots() {
         return this.slots.subList(CRAFT_SLOT_START, CRAFT_SLOT_END);
+    }
+
+    @Override
+    public RecipeBookType getRecipeBookType() {
+        return RecipeBookType.CRAFTING;
+    }
+
+    @Override
+    protected Player owner() {
+        return this.player;
+    }
+
+    @Override
+    public List<Container> getInventoriesForAutofill() {
+        if (!Services.CONFIG.craftingTableCanReach()) {
+            return List.of(this.player.getInventory());
+        }
+
+        List<Container> inventories = new ArrayList<>();
+        this.access.execute((level, origin) -> {
+            int reach = Services.CONFIG.craftingTableReach();
+            BlockPos.betweenClosedStream(origin.offset(-reach, -reach, -reach), origin.offset(reach, reach, reach))
+                    .forEach(pos -> {
+                        if (pos.equals(origin)) {
+                            return;
+                        }
+                        BlockEntity nearby = level.getBlockEntity(pos);
+                        if (nearby instanceof Container container) {
+                            Identifier blockId = BuiltInRegistries.BLOCK.getKey(nearby.getBlockState().getBlock());
+                            if (Services.CONFIG.isContainerBlockEnabled(blockId.getNamespace(), blockId.toString())) {
+                                inventories.add(container);
+                            }
+                        }
+                    });
+            inventories.add(this.player.getInventory());
+        });
+        return inventories;
+    }
+
+    @Override
+    public boolean persistentInventory() {
+        // Slab stores grid contents in the block entity across GUI closes.
+        return true;
+    }
+
+    public CraftingSlabBlockEntity getBlockEntity() {
+        return blockEntity;
     }
 }

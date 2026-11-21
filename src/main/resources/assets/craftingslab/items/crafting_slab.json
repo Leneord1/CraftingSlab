@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "craftingslab:item/crafting_slab"
+  }
+}

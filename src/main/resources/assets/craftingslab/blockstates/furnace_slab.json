@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "type=bottom,facing=north,lit=false": { "model": "craftingslab:block/furnace_slab" },
+    "type=bottom,facing=south,lit=false": { "model": "craftingslab:block/furnace_slab", "y": 180 },
+    "type=bottom,facing=west,lit=false": { "model": "craftingslab:block/furnace_slab", "y": 270 },
+    "type=bottom,facing=east,lit=false": { "model": "craftingslab:block/furnace_slab", "y": 90 },
+    "type=bottom,facing=north,lit=true": { "model": "craftingslab:block/furnace_slab_lit" },
+    "type=bottom,facing=south,lit=true": { "model": "craftingslab:block/furnace_slab_lit", "y": 180 },
+    "type=bottom,facing=west,lit=true": { "model": "craftingslab:block/furnace_slab_lit", "y": 270 },
+    "type=bottom,facing=east,lit=true": { "model": "craftingslab:block/furnace_slab_lit", "y": 90 },
+    "type=top,facing=north,lit=false": { "model": "craftingslab:block/furnace_slab_top" },
+    "type=top,facing=south,lit=false": { "model": "craftingslab:block/furnace_slab_top", "y": 180 },
+    "type=top,facing=west,lit=false": { "model": "craftingslab:block/furnace_slab_top", "y": 270 },
+    "type=top,facing=east,lit=false": { "model": "craftingslab:block/furnace_slab_top", "y": 90 },
+    "type=top,facing=north,lit=true": { "model": "craftingslab:block/furnace_slab_top_lit" },
+    "type=top,facing=south,lit=true": { "model": "craftingslab:block/furnace_slab_top_lit", "y": 180 },
+    "type=top,facing=west,lit=true": { "model": "craftingslab:block/furnace_slab_top_lit", "y": 270 },
+    "type=top,facing=east,lit=true": { "model": "craftingslab:block/furnace_slab_top_lit", "y": 90 },
+    "type=double,facing=north,lit=false": { "model": "craftingslab:block/furnace_slab_double" },
+    "type=double,facing=south,lit=false": { "model": "craftingslab:block/furnace_slab_double", "y": 180 },
+    "type=double,facing=west,lit=false": { "model": "craftingslab:block/furnace_slab_double", "y": 270 },
+    "type=double,facing=east,lit=false": { "model": "craftingslab:block/furnace_slab_double", "y": 90 },
+    "type=double,facing=north,lit=true": { "model": "craftingslab:block/furnace_slab_double_lit" },
+    "type=double,facing=south,lit=true": { "model": "craftingslab:block/furnace_slab_double_lit", "y": 180 },
+    "type=double,facing=west,lit=true": { "model": "craftingslab:block/furnace_slab_double_lit", "y": 270 },
+    "type=double,facing=east,lit=true": { "model": "craftingslab:block/furnace_slab_double_lit", "y": 90 }
+  }
+}

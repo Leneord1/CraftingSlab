@@ -31,6 +31,10 @@ repositories {
         name = "BlameJared"
         url = "https://maven.blamejared.com/"
     }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
 }
 
 base {
@@ -122,6 +126,15 @@ dependencies {
     compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
     localRuntime "mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}"
+
+    // Hard dependency: Nearby Crafting (+ Recipe Book Access API).
+    implementation files(
+            "libs/nearbycrafting-neoforge-1.1.0.jar",
+            "libs/recipebookaccess-neoforge-1.2.0.jar"
+    )
+    // Alternate Modrinth coordinates (enable if libs jars are absent):
+    // implementation "maven.modrinth:nearby-crafting:${nearbycrafting_version}"
+    // implementation "maven.modrinth:recipe-book-access-api:${recipebookaccess_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
