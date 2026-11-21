@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: mezz.jei:jei-1.21.11-common-api:27.48.0.106" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="mezz.jei" artifactId="jei-1.21.11-common-api" version="27.48.0.106" baseVersion="27.48.0.106" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/mezz.jei/jei-1.21.11-common-api/27.48.0.106/33fbf06e25e58f8cf3e20a4a8cc84b130e47efd8/jei-1.21.11-common-api-27.48.0.106.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/mezz.jei/jei-1.21.11-common-api/27.48.0.106/13c081a0ac509b8d80d135366f299164f847e2f7/jei-1.21.11-common-api-27.48.0.106-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

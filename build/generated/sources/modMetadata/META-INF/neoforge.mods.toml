@@ -1,0 +1,38 @@
+license="All Rights Reserved"
+
+[[mods]]
+modId="craftingslab"
+version="1.0.0"
+displayName="Crafting Slab"
+authors="Super Survival"
+description='''
+A crafting-table slab that keeps its 3x3 grid when the GUI is closed.
+'''
+
+[[dependencies.craftingslab]]
+    modId="neoforge"
+    type="required"
+    versionRange="[21.11.48,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.craftingslab]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.21.11]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.craftingslab]]
+    modId="jei"
+    type="optional"
+    versionRange="[15,)"
+    ordering="AFTER"
+    side="CLIENT"
+
+[[dependencies.craftingslab]]
+    modId="craftingtweaks"
+    type="optional"
+    versionRange="[21,)"
+    ordering="AFTER"
+    side="BOTH"

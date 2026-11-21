@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: net.fabricmc:sponge-mixin:0.16.5+mixin.0.8.7" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.fabricmc" artifactId="sponge-mixin" version="0.16.5+mixin.0.8.7" baseVersion="0.16.5+mixin.0.8.7" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.5+mixin.0.8.7/80fc3a9f592673cea87f4cd702f87991c6c9fe4d/sponge-mixin-0.16.5+mixin.0.8.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.5+mixin.0.8.7/c83226005e3161498b6e4ba4a413c67ff1272e1b/sponge-mixin-0.16.5+mixin.0.8.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.5+mixin.0.8.7/e04fc1ab5d733d5dcece298e0433c72e3b29b8ae/sponge-mixin-0.16.5+mixin.0.8.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
