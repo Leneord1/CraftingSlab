@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:crafting_table"
+  ],
+  "result": {
+    "id": "craftingslab:crafting_slab",
+    "count": 2
+  }
+}
