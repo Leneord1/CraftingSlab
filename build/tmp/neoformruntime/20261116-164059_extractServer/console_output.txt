@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+
+Command-Line:
+ - C:\Program Files\Zulu\zulu-21\bin\java.exe
+ - -jar
+ - C:\Users\Sanka\.gradle\caches\modules-2\files-2.1\net.neoforged.installertools\installertools\4.0.7\679b87aecf538183e16421207505b70b868547d\installertools-4.0.7-fatjar.jar
+ - --task
+ - bundler_extract
+ - --input
+ - C:\Users\Sanka\.gradle\caches\neoformruntime\artifacts\minecraft_1.21.11_server.jar
+ - --output
+ - ./output.jar
+ - --jar-only
+--------------------------------------------------------------------------------
+
+Task: BUNDLER_EXTRACT
+Input:   C:\Users\Sanka\.gradle\caches\neoformruntime\artifacts\minecraft_1.21.11_server.jar
+Output:  F:\CurseForge\Instances\Super Survival\mods\craftingslab-1.0.0-src\build\tmp\neoformruntime\20261116-164059_extractServer\.\output.jar
+All:     false
+JarOnly: true
+Libs:    false
+Extracted: versions/1.21.11/server-1.21.11.jar
