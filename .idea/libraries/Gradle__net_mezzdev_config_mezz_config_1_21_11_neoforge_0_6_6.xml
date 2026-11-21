@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.mezzdev.config:mezz_config-1.21.11-neoforge:0.6.6" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.mezzdev.config" artifactId="mezz_config-1.21.11-neoforge" version="0.6.6" baseVersion="0.6.6" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mezzdev.config/mezz_config-1.21.11-neoforge/0.6.6/de70f8de5352a120fd836bb9b08ff001acf9d687/mezz_config-1.21.11-neoforge-0.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mezzdev.config/mezz_config-1.21.11-neoforge/0.6.6/74a40a812b03dee66dc5aaa56508dc263733d88c/mezz_config-1.21.11-neoforge-0.6.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

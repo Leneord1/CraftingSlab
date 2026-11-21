@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.neoforged:JarJarSelector:0.5.0" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.neoforged" artifactId="JarJarSelector" version="0.5.0" baseVersion="0.5.0" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarSelector/0.5.0/64e4956b8dcdd6537eba96590f12fa1f3ba2f831/JarJarSelector-0.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.neoforged/JarJarSelector/0.5.0/a45742a7785c6fc73cb19b9d8bdff0dedd0fc6b0/JarJarSelector-0.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

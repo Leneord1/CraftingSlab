@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/craftingslab-1.0.0-src-main.iml" filepath="$PROJECT_DIR$/.idea/craftingslab-1.0.0-src-main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.iml" filepath="$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.main.iml" filepath="$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.test.iml" filepath="$PROJECT_DIR$/.idea/modules/craftingslab-1.0.0-src.test.iml" />
     </modules>
   </component>
 </project>

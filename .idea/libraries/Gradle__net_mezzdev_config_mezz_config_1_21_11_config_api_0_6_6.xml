@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: net.mezzdev.config:mezz_config-1.21.11-config-api:0.6.6" type="java-imported" external-system-id="GRADLE">
+    <properties groupId="net.mezzdev.config" artifactId="mezz_config-1.21.11-config-api" version="0.6.6" baseVersion="0.6.6" />
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mezzdev.config/mezz_config-1.21.11-config-api/0.6.6/7ec6a390c83264c3ee5601b72e6c601ddd416ad2/mezz_config-1.21.11-config-api-0.6.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mezzdev.config/mezz_config-1.21.11-config-api/0.6.6/fdbac66e4734a653cd452ef75b76e06fd41fcf06/mezz_config-1.21.11-config-api-0.6.6-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.mezzdev.config/mezz_config-1.21.11-config-api/0.6.6/8818e7e56c0a06a1e11482ff97e4ed8784478979/mezz_config-1.21.11-config-api-0.6.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
