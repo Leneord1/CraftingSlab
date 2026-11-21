@@ -14,6 +14,24 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
+      <library name="Gradle: nearbycrafting-neoforge-1.1.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/nearbycrafting-neoforge-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: recipebookaccess-neoforge-1.2.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/recipebookaccess-neoforge-1.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="Gradle: neoforge-21.11.48-merged.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../../build/moddev/artifacts/neoforge-21.11.48-merged.jar!/" />

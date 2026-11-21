@@ -7,6 +7,24 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="craftingslab-1.0.0-src.main" />
+    <orderEntry type="module-library">
+      <library name="Gradle: nearbycrafting-neoforge-1.1.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/nearbycrafting-neoforge-1.1.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Gradle: recipebookaccess-neoforge-1.2.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../libs/recipebookaccess-neoforge-1.2.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
   <component name="TestModuleProperties" production-module="craftingslab-1.0.0-src.main" />
 </module>
