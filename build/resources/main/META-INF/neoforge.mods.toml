@@ -7,6 +7,7 @@ displayName="Crafting Slab"
 authors="Super Survival"
 description='''
 A crafting-table slab that keeps its 3x3 grid when the GUI is closed.
+Requires Nearby Crafting for nearby-chest recipe-book crafting.
 '''
 
 [[dependencies.craftingslab]]
@@ -21,6 +22,20 @@ A crafting-table slab that keeps its 3x3 grid when the GUI is closed.
     type="required"
     versionRange="[1.21.11]"
     ordering="NONE"
+    side="BOTH"
+
+[[dependencies.craftingslab]]
+    modId="nearbycrafting"
+    type="required"
+    versionRange="[1.1.0,)"
+    ordering="AFTER"
+    side="BOTH"
+
+[[dependencies.craftingslab]]
+    modId="recipebookaccess"
+    type="required"
+    versionRange="[1.2.0,)"
+    ordering="AFTER"
     side="BOTH"
 
 [[dependencies.craftingslab]]
